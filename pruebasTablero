@@ -1,14 +1,20 @@
+import java.util.Scanner;
 
 public class pruebasTablero {
 
 	public static void main(String[] args) {
 
+		Scanner teclado = new Scanner(System.in);
+		
 		Tablero tablero = new Tablero();
 		
-	
+		System.out.println("Indica la posicion que quieres cambiar");
+		int posicion = teclado.nextInt();
 		
-		tablero.showTablero();
-
+		System.out.println("On la vols moure");
+		int posicioNova = teclado.nextInt();
+		
+		tablero.movimiento(posicion,posicion,posicioNova,posicioNova);
 	}
 
 }
