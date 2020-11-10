@@ -1,55 +1,83 @@
+
 public class Tablero {
-	
-	int filas;
-	int columnas;
-	String[][] tablero;
-	
+
+	Ficha[][] tablero = new Ficha[8][8];
+
 	Tablero () {
 		
-		this.filas = 9;
-		this.columnas = 9;
-		this.tablero = new String[filas][columnas];
-		
-		llenarTablero(tablero);
+		for (int filas = 0; filas < tablero.length; filas++) {
+			for(int columnas = 0; columnas < tablero.length; columnas++) {
+				
+				if (filas == 0) {
+					
+					tablero[0][0] = new Ficha("negro", "t");
+					tablero[0][1] = new Ficha("negro", "c");
+					tablero[0][2] = new Ficha("negro", "a");
+					tablero[0][3] = new Ficha("negro", "k");
+					tablero[0][4] = new Ficha("negro", "q");
+					tablero[0][5] = new Ficha("negro", "a");
+					tablero[0][6] = new Ficha("negro", "c");
+					tablero[0][7] = new Ficha("negro", "t");
+				}
+				else if (filas == 1) {
+
+					for (columnas = 0; columnas < tablero.length; columnas++) {
+						tablero[filas][columnas] = new Ficha("negro", "p");
+					}
+				}
+				else if(filas == 6) {
+					
+					for (columnas = 0; columnas < tablero.length; columnas++) {
+						tablero[filas][columnas] = new Ficha("blancas", "P");
+					}
+				}
+				else if(filas == 7) {
+					
+					tablero[7][0] = new Ficha("blancas", "T");
+					tablero[7][1] = new Ficha("blancas", "C");
+					tablero[7][2] = new Ficha("blancas", "A");
+					tablero[7][3] = new Ficha("blancas", "K");
+					tablero[7][4] = new Ficha("blancas", "Q");
+					tablero[7][5] = new Ficha("blancas", "A");
+					tablero[7][6] = new Ficha("blancas", "C");
+					tablero[7][7] = new Ficha("blancas", "T");
+					}
+				else {
+					
+					tablero[filas][columnas] = new Ficha("empty","*");
+				}
+			}
 		}
-	
-	public void llenarTablero (String[][] tablero) {
-		
-		
-		String[] letras = {"/","A","B","C","D","E","F","G","H"};
-		String[] numeros = {"/","1","2","3","4","5","6","7","8"};
-		
-		
-		for (int i = 0; i < filas; i++) {
-			
-			for (int j = 0; j < columnas; j++) {
-				
-				tablero[i][j] = "i";
-				
+		showTablero();
 		
 	}
-}
+		
+		
 	
-		for (int i = 0; i < numeros.length; i++) {
-			tablero[0][i] = letras[i];
-		}
-		for (int i = 0; i < numeros.length; i++) {
-			tablero[i][0] = numeros[i];
-		}
-		
-		
-}
-		
 	
 	public void showTablero () {
 		
-	
-		for (int i = 0; i < filas; i++) {
-			for (int j = 0; j < columnas; j++) {
-			
-				System.out.print(tablero[i][j]+ " ");
+		for (int filas = 0; filas < tablero.length; filas++) {
+			for (int columnas = 0; columnas < tablero.length; columnas++) {
+				System.out.print(tablero[filas][columnas].letra + " ");
 			}
 			System.out.println("");
 		}
+	}
+	
+	public void movimiento (int antigaX, int antigaY, int x, int y) {
+		
+		// if compleix totes les condicions, encara falten per posar
+		if (!tablero[antigaX][antigaY].color.equalsIgnoreCase(tablero[x][y].color)) {
+		
+		tablero[x][y].color = tablero[antigaX][antigaY].color;
+		tablero[x][y].letra = tablero[antigaX][antigaY].letra;	
+		
+		tablero[antigaX][antigaY].color = "empty";
+		tablero[antigaX][antigaY].letra = "*";
+		
+		
+		}
+		showTablero();
 	}
 }
