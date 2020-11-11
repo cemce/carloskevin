@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class pruebasTablero {
@@ -8,13 +9,17 @@ public class pruebasTablero {
 		
 		Tablero tablero = new Tablero();
 		
-		System.out.println("Indica la posicion que quieres cambiar");
-		int posicion = teclado.nextInt();
+		System.out.println("Indica la fila a cambiar");
+		int posicionFila = teclado.nextInt();
+		System.out.println("Indica la columna a cambiar");
+		int posicioColumna = teclado.nextInt();
 		
-		System.out.println("On la vols moure");
-		int posicioNova = teclado.nextInt();
+		System.out.println("On la vols moure fila");
+		int posicioNovaFila = teclado.nextInt();
+		System.out.println("On la vols moure columna");
+		int posicioNovaColumna = teclado.nextInt();
 		
-		tablero.movimiento(posicion,posicion,posicioNova,posicioNova);
+		tablero.movimiento(posicionFila,posicioColumna,posicioNovaFila,posicioNovaColumna);
 	}
 
 }
