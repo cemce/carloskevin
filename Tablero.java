@@ -1,4 +1,3 @@
-
 public class Tablero {
 
 	Ficha[][] tablero = new Ficha[8][8];
@@ -68,7 +67,7 @@ public class Tablero {
 	public void movimiento (int antigaX, int antigaY, int x, int y) {
 		
 		// if compleix totes les condicions, encara falten per posar
-		if (!tablero[antigaX][antigaY].color.equalsIgnoreCase(tablero[x][y].color)) {
+		if (tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y)) {
 		
 		tablero[x][y].color = tablero[antigaX][antigaY].color;
 		tablero[x][y].letra = tablero[antigaX][antigaY].letra;	
@@ -76,8 +75,8 @@ public class Tablero {
 		tablero[antigaX][antigaY].color = "empty";
 		tablero[antigaX][antigaY].letra = "*";
 		
-		
+	
 		}
 		showTablero();
 	}
-}
+	
