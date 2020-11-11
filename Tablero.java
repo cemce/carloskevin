@@ -9,7 +9,7 @@ public class Tablero {
 				
 				if (filas == 0) {
 					
-					tablero[0][0] = new Ficha("negro", "t");
+					tablero[0][0] = new Ficha	("negro", "t");
 					tablero[0][1] = new Ficha("negro", "c");
 					tablero[0][2] = new Ficha("negro", "a");
 					tablero[0][3] = new Ficha("negro", "k");
@@ -69,14 +69,22 @@ public class Tablero {
 		// if compleix totes les condicions, encara falten per posar
 		if (tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y)) {
 		
-		tablero[x][y].color = tablero[antigaX][antigaY].color;
-		tablero[x][y].letra = tablero[antigaX][antigaY].letra;	
+			if (tablero[x][y].color.equalsIgnoreCase(tablero[antigaX][antigaY].color)) {
+				
+				System.out.println("La posición a la que va la ficha, es del mismo color que la otra");
+			}
+			
+			else {
+				tablero[x][y].color = tablero[antigaX][antigaY].color;
+				tablero[x][y].letra = tablero[antigaX][antigaY].letra;	
 		
-		tablero[antigaX][antigaY].color = "empty";
-		tablero[antigaX][antigaY].letra = "*";
+				tablero[antigaX][antigaY].color = "empty";
+				tablero[antigaX][antigaY].letra = "*";
 		
 	
 		}
 		showTablero();
-	}
+		}
 	
+	}
+}
