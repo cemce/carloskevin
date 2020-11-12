@@ -85,44 +85,64 @@ public class Tablero {
 	
 		}
 		else {
-			System.out.println("Mumal " + tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y) + sePuedeMover(antigaX, antigaY, x, y));
+			System.out.println("Algo ha fallat " + "comprobació moviment peça " + tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y) + "comprobació pot passar " + sePuedeMover(antigaX, antigaY, x, y));
 		}
 		showTablero();
 	}
 	
 	//Aqui hay errores 100%
 	public boolean sePuedeMover(int antigaX, int antigaY, int x, int y) {
-	    if (antigaX == x && antigaY > y) {
-	        for (int i = antigaY - 1; i > y; i--) {
+	    
+		
+		if (antigaX == x && antigaY > y) {
+			//Això significa que es mou a la esquerra
+			//Es va restant la i, comenc                             ESQUERRA
+			for (int i = antigaY - 1; i > y; i--) {
 	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
-	               System.out.println("horitzontal mal");
+	               System.out.println("esquerra mal");
 	            	return false;
-	               
-	            }
-	        }
-	    } else if (antigaX < x && antigaY == y) { 
-	        for (int i = antigaX + 1; i < x; i++) {
-	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
-	            	System.out.println("horitzontal mal");
-	                return false;
-	            }
-	        }
-	    } else if (antigaX == x && antigaY < y) {
+	               }
+			}
+		}
+		//Fila més petita, columna igual 
+		//Moviment cap abaix                                      ABAIX
+		else if (antigaX < x && antigaY == y) { 
+				
+			//Se suma les files 
+		        for (int i = antigaX + 1; i < x; i++) {
+		            if (!tablero[i][antigaY].letra.equalsIgnoreCase("*")) {
+		            	System.out.println("abaix mal");
+		                return false;
+		            }
+		        }
+		}	
+		//Fila igual, columna més petita
+		//Això vol dir que anem cap a la dreta                      DRETA
+		else if (antigaX == x && antigaY < y) {
+			//Sumem a la columna per veure si trobem algo que no toca
 	        for (int i = antigaY + 1; i < y; i++) {
-	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
-	            	System.out.println("horitzontal mal");	            	
+	            if (!tablero[antigaX][i].letra.equalsIgnoreCase("*")) {
+	            	System.out.println("dreta malament");	            	
 	            	return false;
 	               
 	            }
 	        }
-	    } else if (antigaX > x && antigaY == y) { // horizontal west
+	    } 
+		
+		//Fila és més gran, columna igual
+		//Això vol dir que anem cap amunt                             AMUNT
+		else if (antigaX > x && antigaY == y) { // horizontal west
 	        for (int i = antigaX - 1; i > x; i--) {
 	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
-	            	System.out.println("horitzontal mal");
+	            	System.out.println("amunt mal");
 	                return false;
 	            }
 	        }
 	    }
+		
+		return true;
+		/*//Posició fila inicial és igual a la fila, sol canvia columnes
+		
 	    else if (antigaX < x && antigaY > y) { 
 	        
 	        for (int row = antigaX + 1; row < x; row++) {
@@ -161,6 +181,7 @@ public class Tablero {
 	            }
 	        }
 	    }
-	    return true;
+	    return true;*/
 	}
 }
+
