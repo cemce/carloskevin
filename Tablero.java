@@ -100,16 +100,17 @@ public class Tablero {
 	               
 	            }
 	        }
-	    } else if (antigaX < x && antigaY == y) { // horizontal east
+	    } else if (antigaX < x && antigaY == y) { 
 	        for (int i = antigaX + 1; i < x; i++) {
 	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
+	            	System.out.println("horitzontal mal");
 	                return false;
 	            }
 	        }
-	    } else if (antigaX == x && antigaY < y) { // horizontal south
+	    } else if (antigaX == x && antigaY < y) {
 	        for (int i = antigaY + 1; i < y; i++) {
 	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
-	               System.out.println("falso");
+	            	System.out.println("horitzontal mal");	            	
 	            	return false;
 	               
 	            }
@@ -117,39 +118,44 @@ public class Tablero {
 	    } else if (antigaX > x && antigaY == y) { // horizontal west
 	        for (int i = antigaX - 1; i > x; i--) {
 	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
+	            	System.out.println("horitzontal mal");
 	                return false;
 	            }
 	        }
 	    }
-	    else if (antigaX < x && antigaY > y) { // diagonal northeast
-	        // these diagonals aren't working properly
+	    else if (antigaX < x && antigaY > y) { 
+	        
 	        for (int row = antigaX + 1; row < x; row++) {
 	            for (int col = antigaY - 1; col >= y; col--) {
 	                if (!tablero[row][antigaX].letra.equalsIgnoreCase("*")) {
+	                	System.out.println("vertical mal");
 	                    return false;
 	                }
 	            }
 	        }
-	    } else if (antigaX < x && antigaY < y) { // diagonal southeast
+	    } else if (antigaX < x && antigaY < y) { 
 	        for (int row = antigaX + 1; row < x; row++) {
 	            for (int col = antigaY + 1; col < y; col++) {
 	                if (!tablero[row][antigaX].letra.equalsIgnoreCase("*")) {
+	                	System.out.println("vertical mal");
 	                    return false;
 	                }
 	            }
 	        }
-	    } else if (antigaX > x && antigaY < y) { // diagonal southwest
+	    } else if (antigaX > x && antigaY < y) {
 	        for (int row = antigaX - 1; row >= x; row--) {
 	            for (int col = antigaY + 1; col < y; col++) {
 	                if (!tablero[row][antigaX].letra.equalsIgnoreCase("*")) {
+	                	System.out.println("vertical mal");
 	                    return false;
 	                }
 	            }
 	        }
-	    } else if (antigaX > x && antigaY > y) { // diagonal northwest
+	    } else if (antigaX > x && antigaY > y) { 
 	        for (int row = antigaX - 1; row >= x; row--) {
 	            for (int col = antigaY - 1; col >= y; col--) {
 	                if (!tablero[row][antigaX].letra.equalsIgnoreCase("*")) {
+	                	System.out.println("vertical mal");
 	                    return false;
 	                }
 	            }
