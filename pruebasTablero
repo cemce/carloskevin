@@ -5,10 +5,20 @@ public class pruebasTablero {
 
 	public static void main(String[] args) {
 
+		int turno = 1;
+		
+		
+		Juego(turno);
+		
+	}
+
+	public static void Juego (int turno) {
+		
 		Scanner teclado = new Scanner(System.in);
 		
 		Tablero tablero = new Tablero();
 		
+		while (turno == 1) {
 		System.out.println("Indica la fila a cambiar");
 		int posicionFila = teclado.nextInt();
 		System.out.println("Indica la columna a cambiar");
@@ -21,6 +31,8 @@ public class pruebasTablero {
 		int posicioNovaColumna = teclado.nextInt();
 		
 		tablero.movimiento(posicionFila,posicioColumna,posicioNovaFila,posicioNovaColumna);
+		}
+		
+		
 	}
-
 }
