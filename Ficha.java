@@ -10,13 +10,14 @@ public class Ficha {
 		
 	}
 	
-	public boolean posibleMoviment (int antigaX, int antigaY, int x, int y) {
+	public boolean posibleMoviment (Ficha[][] tablero,int antigaX, int antigaY, int x, int y) {
 		
+		System.out.println(tablero[x][y].color);
 		//Torre posible movimientos
 		if (this.letra.equalsIgnoreCase("t")) {
 			
 			if (x == antigaX || antigaY == y) {
-				System.out.println("correcte");
+				
 				return true;
 			}
 			//Comprobant de on les ha posat
@@ -32,13 +33,15 @@ public class Ficha {
 				
 				if (antigaX == 6) {
 					
-					if ( ( x + 2 == antigaX || x + 1 == antigaX ) && antigaY == y) {
-						System.out.println("correcte");
+					if ( tablero[x][y].color.equalsIgnoreCase("negro") ||( ( x + 2 == antigaX || x + 1 == antigaX ) && antigaY == y)
+						) {
+						
+						
 						return true;
 					}
 				}
 				else if ( x+1 == antigaX && antigaY == y ) {
-					System.out.println("correcte");
+					
 					return true;
 				}
 				else {
@@ -52,12 +55,12 @@ public class Ficha {
 				if (antigaX == 1) {
 					
 					if ( ( x - 2 == antigaX || x - 1 == antigaX ) && antigaY == y) {
-						System.out.println("correcte");
+						
 						return true;
 					}
 				}
 				if ( x-1 == antigaX && antigaY == y ) {
-					System.out.println("correcte");
+					
 					return true;
 				}
 			else {
@@ -70,7 +73,7 @@ public class Ficha {
 		if (this.letra.equalsIgnoreCase("c")) {
 			
 			if ((x - antigaX) * (x- antigaX) + (y - antigaY) * (y- antigaY) == 5) {
-				System.out.println("correcte");
+				
 				return true;
 			}
 			else {
@@ -83,7 +86,7 @@ public class Ficha {
 		if (this.letra.equalsIgnoreCase("q")) {
 			
 			if ((x == antigaX) || (y == antigaY) || (Math.abs(x - antigaX) == Math.abs(y - antigaY))) {
-				System.out.println("correcte");
+			
 				return true;
 			}
 			else {
@@ -95,7 +98,7 @@ public class Ficha {
 		if (this.letra.equalsIgnoreCase("k")) {
 			
 			if ( (Math.abs(x - antigaX )<=1) && (Math.abs(y - antigaY) <=1) ) {
-				System.out.println("correcte");
+				
 				return true;
 			}
 			else {
@@ -107,7 +110,7 @@ public class Ficha {
 		if (this.letra.equalsIgnoreCase("a")) {
 			
 			if (Math.abs(x - antigaX) == Math.abs(y - antigaY)) {
-				System.out.println("correcte");
+				
 				return true;
 				}
 			else {
@@ -121,4 +124,3 @@ public class Ficha {
 
 	}
 	
-
