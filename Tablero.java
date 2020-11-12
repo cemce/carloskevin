@@ -181,7 +181,7 @@ public class Tablero {
 	            }
 	        }
 	    }
-	    return true;*/
+	    return true;*///
 	}
 }
 
