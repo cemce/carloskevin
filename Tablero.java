@@ -1,6 +1,9 @@
+import java.util.Scanner;
+
 public class Tablero {
 
 	Ficha[][] tablero = new Ficha[8][8];
+	int reyes = 2;
 
 	Tablero () {
 		
@@ -56,23 +59,38 @@ public class Tablero {
 	
 	public void showTablero () {
 		
+		int contador = 0;
 		for (int filas = 0; filas < tablero.length; filas++) {
 			for (int columnas = 0; columnas < tablero.length; columnas++) {
 				System.out.print(tablero[filas][columnas].letra + " ");
+				
+				if (tablero[filas][columnas].letra.equalsIgnoreCase("k")) {
+					contador++;
+					this.reyes = contador;
+				}
 			}
 			System.out.println("");
 		}
+		
 	}
 	
 	public void movimiento (int antigaX, int antigaY, int x, int y) {
 		
 		// if compleix totes les condicions, encara falten per posar
-		if (tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y) && sePuedeMover(antigaX, antigaY, x, y)) {
+		if (tablero[antigaX][antigaY].posibleMoviment(tablero,antigaX, antigaY, x, y) && sePuedeMover(antigaX, antigaY, x, y)) {
 		
 			
 			if (tablero[antigaX][antigaY].color.equalsIgnoreCase(tablero[x][y].color)) {
 				
 				System.out.println("No puedes moverla ahí, el color es el mismo al de la ficha");
+			}
+			
+			//Controlar el peon que no pueda matar delante
+			else if (tablero[antigaX][antigaY].letra.equalsIgnoreCase(tablero[x][y].letra) && 
+					(tablero[antigaX][antigaY].letra.equalsIgnoreCase("p")
+							|| tablero[x][y].letra.equalsIgnoreCase("p"))) {
+				
+				System.out.println("Peon no mata así");
 			}
 			
 			else {
@@ -85,7 +103,7 @@ public class Tablero {
 	
 		}
 		else {
-			System.out.println("Algo ha fallat " + "comprobació moviment peça " + tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y) + "comprobació pot passar " + sePuedeMover(antigaX, antigaY, x, y));
+			System.out.println("Algo ha fallat " + "comprobació moviment peça " + tablero[antigaX][antigaY].posibleMoviment(tablero,antigaX, antigaY, x, y) + "comprobació pot passar " + sePuedeMover(antigaX, antigaY, x, y));
 		}
 		showTablero();
 	}
@@ -183,5 +201,12 @@ public class Tablero {
 	    }
 	    return true;*///
 	}
+	public boolean end (Tablero tablero) {
+		
+		if (tablero.reyes != 2) {
+			return true;
+		}
+		return false;
+		
+	}
 }
-
