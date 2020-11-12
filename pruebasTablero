@@ -18,7 +18,7 @@ public class pruebasTablero {
 		
 		Tablero tablero = new Tablero();
 		
-		while (turno == 1) {
+		while (!tablero.end(tablero)) {
 		System.out.println("Indica la fila a cambiar");
 		int posicionFila = teclado.nextInt();
 		System.out.println("Indica la columna a cambiar");
@@ -35,4 +35,6 @@ public class pruebasTablero {
 		
 		
 	}
+	
+
 }
