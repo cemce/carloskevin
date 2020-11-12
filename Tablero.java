@@ -69,22 +69,22 @@ public class Tablero {
 		// if compleix totes les condicions, encara falten per posar
 		if (tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y)) {
 		
-			if (tablero[x][y].color.equalsIgnoreCase(tablero[antigaX][antigaY].color)) {
+			
+			if (tablero[antigaX][antigaY].color.equalsIgnoreCase(tablero[x][y].color)) {
 				
-				System.out.println("La posición a la que va la ficha, es del mismo color que la otra");
+				System.out.println("No puedes moverla ahí, el color es el mismo al de la ficha");
 			}
 			
 			else {
-				tablero[x][y].color = tablero[antigaX][antigaY].color;
-				tablero[x][y].letra = tablero[antigaX][antigaY].letra;	
+			tablero[x][y].color = tablero[antigaX][antigaY].color;
+			tablero[x][y].letra = tablero[antigaX][antigaY].letra;	
 		
-				tablero[antigaX][antigaY].color = "empty";
-				tablero[antigaX][antigaY].letra = "*";
-		
+			tablero[antigaX][antigaY].color = "empty";
+			tablero[antigaX][antigaY].letra = "*";
+			}
 	
 		}
 		showTablero();
 		}
 	
 	}
-}
