@@ -30,7 +30,14 @@ public class Ficha {
 			
 			if (this.color.equalsIgnoreCase("blancas")) {
 				
-				if ( (x+1 == antigaX || x+2 == antigaX) && antigaY == y ) {
+				if (antigaX == 6) {
+					
+					if ( ( x + 2 == antigaX || x + 1 == antigaX ) && antigaY == y) {
+						System.out.println("correcte");
+						return true;
+					}
+				}
+				else if ( x+1 == antigaX && antigaY == y ) {
 					System.out.println("correcte");
 					return true;
 				}
@@ -41,10 +48,18 @@ public class Ficha {
 			}
 			
 			else {
-			if ( (x-1 == antigaX || x-2 == antigaX) && antigaY == y ) {
-				System.out.println("correcte");
-				return true;
-			}
+				
+				if (antigaX == 1) {
+					
+					if ( ( x - 2 == antigaX || x - 1 == antigaX ) && antigaY == y) {
+						System.out.println("correcte");
+						return true;
+					}
+				}
+				if ( x-1 == antigaX && antigaY == y ) {
+					System.out.println("correcte");
+					return true;
+				}
 			else {
 				System.out.println("peon fallo movimiento");
 				return false;
@@ -102,6 +117,8 @@ public class Ficha {
 		}// Fi alfil
 		return false;
 		}
-	}
+	
 
+	}
+	
 
