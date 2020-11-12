@@ -67,7 +67,7 @@ public class Tablero {
 	public void movimiento (int antigaX, int antigaY, int x, int y) {
 		
 		// if compleix totes les condicions, encara falten per posar
-		if (tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y)) {
+		if (tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y) && sePuedeMover(antigaX, antigaY, x, y)) {
 		
 			
 			if (tablero[antigaX][antigaY].color.equalsIgnoreCase(tablero[x][y].color)) {
@@ -84,7 +84,77 @@ public class Tablero {
 			}
 	
 		}
-		showTablero();
+		else {
+			System.out.println("Mumal " + tablero[antigaX][antigaY].posibleMoviment(antigaX, antigaY, x, y) + sePuedeMover(antigaX, antigaY, x, y));
 		}
-	
+		showTablero();
 	}
+	
+	//Aqui hay errores 100%
+	public boolean sePuedeMover(int antigaX, int antigaY, int x, int y) {
+	    if (antigaX == x && antigaY > y) {
+	        for (int i = antigaY - 1; i > y; i--) {
+	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
+	               System.out.println("horitzontal mal");
+	            	return false;
+	               
+	            }
+	        }
+	    } else if (antigaX < x && antigaY == y) { // horizontal east
+	        for (int i = antigaX + 1; i < x; i++) {
+	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
+	                return false;
+	            }
+	        }
+	    } else if (antigaX == x && antigaY < y) { // horizontal south
+	        for (int i = antigaY + 1; i < y; i++) {
+	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
+	               System.out.println("falso");
+	            	return false;
+	               
+	            }
+	        }
+	    } else if (antigaX > x && antigaY == y) { // horizontal west
+	        for (int i = antigaX - 1; i > x; i--) {
+	            if (!tablero[i][antigaX].letra.equalsIgnoreCase("*")) {
+	                return false;
+	            }
+	        }
+	    }
+	    else if (antigaX < x && antigaY > y) { // diagonal northeast
+	        // these diagonals aren't working properly
+	        for (int row = antigaX + 1; row < x; row++) {
+	            for (int col = antigaY - 1; col >= y; col--) {
+	                if (!tablero[row][antigaX].letra.equalsIgnoreCase("*")) {
+	                    return false;
+	                }
+	            }
+	        }
+	    } else if (antigaX < x && antigaY < y) { // diagonal southeast
+	        for (int row = antigaX + 1; row < x; row++) {
+	            for (int col = antigaY + 1; col < y; col++) {
+	                if (!tablero[row][antigaX].letra.equalsIgnoreCase("*")) {
+	                    return false;
+	                }
+	            }
+	        }
+	    } else if (antigaX > x && antigaY < y) { // diagonal southwest
+	        for (int row = antigaX - 1; row >= x; row--) {
+	            for (int col = antigaY + 1; col < y; col++) {
+	                if (!tablero[row][antigaX].letra.equalsIgnoreCase("*")) {
+	                    return false;
+	                }
+	            }
+	        }
+	    } else if (antigaX > x && antigaY > y) { // diagonal northwest
+	        for (int row = antigaX - 1; row >= x; row--) {
+	            for (int col = antigaY - 1; col >= y; col--) {
+	                if (!tablero[row][antigaX].letra.equalsIgnoreCase("*")) {
+	                    return false;
+	                }
+	            }
+	        }
+	    }
+	    return true;
+	}
+}
