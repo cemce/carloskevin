@@ -87,8 +87,21 @@ public class Ficha {
 				System.out.println("fallo movimiento rei");
 				return false;
 			}
-		}
+		} //Fin rei
+		
+		if (this.letra.equalsIgnoreCase("a")) {
+			
+			if (Math.abs(x - antigaX) == Math.abs(y - antigaY)) {
+				System.out.println("correcte");
+				return true;
+				}
+			else {
+				System.out.println("fallo movimiento alfil");
+				return false;
+			}
+		}// Fi alfil
 		return false;
 		}
 	}
+
 
