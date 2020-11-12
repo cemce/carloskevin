@@ -74,10 +74,25 @@ public class Tablero {
 		
 	}
 	
-	public void movimiento (int antigaX, int antigaY, int x, int y) {
+	public boolean movimiento (int antigaX, int antigaY, int x, int y,int turno) {
 		
 		// if compleix totes les condicions, encara falten per posar
-		if (tablero[antigaX][antigaY].posibleMoviment(tablero,antigaX, antigaY, x, y) && sePuedeMover(antigaX, antigaY, x, y)) {
+		
+		if (turno == 1 && !tablero[antigaX][antigaY].color.equalsIgnoreCase("blancas")) {
+			System.out.println("Malament, has de escollir les teves fitxes");
+			showTablero();
+			return false;
+			
+		}
+		
+		else if (turno != 1 && !tablero[antigaX][antigaY].color.equalsIgnoreCase("negro")) {
+			System.out.println("Malament, has de escollir les teves fitxes");
+			showTablero();
+			return false;
+		}
+		
+		
+		else if (tablero[antigaX][antigaY].posibleMoviment(tablero,antigaX, antigaY, x, y) && sePuedeMover(antigaX, antigaY, x, y)) {
 		
 			
 			if (tablero[antigaX][antigaY].color.equalsIgnoreCase(tablero[x][y].color)) {
@@ -106,6 +121,7 @@ public class Tablero {
 			System.out.println("Algo ha fallat " + "comprobació moviment peça " + tablero[antigaX][antigaY].posibleMoviment(tablero,antigaX, antigaY, x, y) + "comprobació pot passar " + sePuedeMover(antigaX, antigaY, x, y));
 		}
 		showTablero();
+		return true;
 	}
 	
 	//Aqui hay errores 100%
