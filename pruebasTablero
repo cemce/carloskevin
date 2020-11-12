@@ -18,7 +18,20 @@ public class pruebasTablero {
 		
 		Tablero tablero = new Tablero();
 		
+		
+		
+			
+		
 		while (!tablero.end(tablero)) {
+		
+			
+			if (turno == 1) {
+				System.out.println("Turno blancas");
+			}
+			
+			else {
+				System.out.println("Turno negras");
+			}
 		System.out.println("Indica la fila a cambiar");
 		int posicionFila = teclado.nextInt();
 		System.out.println("Indica la columna a cambiar");
@@ -30,11 +43,19 @@ public class pruebasTablero {
 		System.out.println("On la vols moure columna");
 		int posicioNovaColumna = teclado.nextInt();
 		
-		tablero.movimiento(posicionFila,posicioColumna,posicioNovaFila,posicioNovaColumna);
+		boolean correcto = tablero.movimiento(posicionFila,posicioColumna,posicioNovaFila,posicioNovaColumna,turno);
+		
+		System.out.println(correcto);
+		
+		if (correcto && turno == 1) {
+			turno++;
 		}
-		
-		
+		else if (correcto && turno != 1){
+			turno--;
+		}
 	}
+		
+}	
 	
 
 }
