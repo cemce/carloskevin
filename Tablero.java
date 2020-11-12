@@ -4,6 +4,9 @@ public class Tablero {
 
 	Ficha[][] tablero = new Ficha[8][8];
 	int reyes = 2;
+	String colorRei1 = "";
+	String colorRei2 = "";
+	
 
 	Tablero () {
 		
@@ -64,10 +67,17 @@ public class Tablero {
 			for (int columnas = 0; columnas < tablero.length; columnas++) {
 				System.out.print(tablero[filas][columnas].letra + " ");
 				
-				if (tablero[filas][columnas].letra.equalsIgnoreCase("k")) {
+				if (tablero[filas][columnas].letra.equals("k")) {
 					contador++;
 					this.reyes = contador;
+					this.colorRei1 = tablero[filas][columnas].letra;
 				}
+				if (tablero[filas][columnas].letra.equals("K")) {
+					contador++;
+					this.reyes = contador;
+					this.colorRei2 = tablero[filas][columnas].letra;
+				}
+				
 			}
 			System.out.println("");
 		}
@@ -98,6 +108,8 @@ public class Tablero {
 			if (tablero[antigaX][antigaY].color.equalsIgnoreCase(tablero[x][y].color)) {
 				
 				System.out.println("No puedes moverla ahí, el color es el mismo al de la ficha");
+				showTablero();
+				return false;
 			}
 			
 			//Controlar el peon que no pueda matar delante
@@ -106,6 +118,8 @@ public class Tablero {
 							|| tablero[x][y].letra.equalsIgnoreCase("p"))) {
 				
 				System.out.println("Peon no mata así");
+				showTablero();
+				return false;
 			}
 			
 			else {
@@ -119,6 +133,8 @@ public class Tablero {
 		}
 		else {
 			System.out.println("Algo ha fallat " + "comprobació moviment peça " + tablero[antigaX][antigaY].posibleMoviment(tablero,antigaX, antigaY, x, y) + "comprobació pot passar " + sePuedeMover(antigaX, antigaY, x, y));
+			showTablero();
+			return false;
 		}
 		showTablero();
 		return true;
@@ -217,9 +233,16 @@ public class Tablero {
 	    }
 	    return true;*///
 	}
-	public boolean end (Tablero tablero) {
+	public boolean end (Tablero tablero, int turno) {
 		
 		if (tablero.reyes != 2) {
+			
+			if (turno == 1) {
+				System.out.println("Han ganado las negras");
+			}
+			else {
+				System.out.println("Han ganado las blancas");
+			}
 			return true;
 		}
 		return false;
