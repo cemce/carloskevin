@@ -13,6 +13,7 @@ public class Ficha {
 	public boolean posibleMoviment (Ficha[][] tablero,int antigaX, int antigaY, int x, int y) {
 		
 		System.out.println(tablero[x][y].color);
+		System.out.println(tablero[antigaX][antigaY].letra);
 		//Torre posible movimientos
 		if (this.letra.equalsIgnoreCase("t")) {
 			
@@ -33,14 +34,13 @@ public class Ficha {
 				
 				if (antigaX == 6) {
 					
-					if ( tablero[x][y].color.equalsIgnoreCase("negro") ||( ( x + 2 == antigaX || x + 1 == antigaX ) && antigaY == y)
-						) {
+					if (( ( x + 2 == antigaX || x + 1 == antigaX ) && antigaY == y)) {
 						
-						
+					
 						return true;
 					}
 				}
-				else if ( x+1 == antigaX && antigaY == y ) {
+				else if ( x+1 == antigaX && antigaY == y) {
 					
 					return true;
 				}
@@ -123,4 +123,3 @@ public class Ficha {
 	
 
 	}
-	
